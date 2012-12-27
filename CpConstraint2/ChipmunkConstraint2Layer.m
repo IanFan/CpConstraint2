@@ -216,18 +216,6 @@
 }
 
 #pragma mark -
-#pragma mark ChipmunkSpace
-
--(void)setSpace {
-  CGSize winSize = [CCDirector sharedDirector].winSize;
-  
-  _space = [[ChipmunkSpace alloc]init];
-  [_space addBounds:CGRectMake(0, 0, winSize.width, winSize.height) thickness:60.0 elasticity:1.0 friction:0.2 layers:NOT_GRABABLE_MASK group:nil collisionType:nil];
-  _space.gravity = cpv(0, -600);
-  _space.iterations = 30;
-}
-
-#pragma mark -
 #pragma mark Update
 
 -(void)update:(ccTime)dt {
@@ -301,6 +289,18 @@
 -(void)setDebugLayer {
   _debugLayer = [[CPDebugLayer alloc]initWithSpace:_space.space options:nil];
   [self addChild:_debugLayer z:999];
+}
+
+#pragma mark -
+#pragma mark ChipmunkSpace
+
+-(void)setSpace {
+  CGSize winSize = [CCDirector sharedDirector].winSize;
+  
+  _space = [[ChipmunkSpace alloc]init];
+  [_space addBounds:CGRectMake(0, 0, winSize.width, winSize.height) thickness:60.0 elasticity:1.0 friction:0.2 layers:NOT_GRABABLE_MASK group:nil collisionType:nil];
+  _space.gravity = cpv(0, -600);
+  _space.iterations = 30;
 }
 
 /*
